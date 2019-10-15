@@ -77,6 +77,8 @@ const students = [
 
 // createStudentComponent function
 
+/* Original code from last practice exercise
+
 let studentClass = "";
 const createStudentComponent = (name, subject, info, score) => {
     if (score >= 60) {
@@ -101,6 +103,41 @@ for (let i = 0; i < students.length; i++) {
         students[i].subject, 
         students[i].info, 
         students[i].score);
+    studentHTML += singleStudentHTML;
+    console.log(studentHTML);
+}
+
+const studentContainer = document.querySelector("#container");
+studentContainer.innerHTML = studentHTML;
+
+*/
+
+//student represents the object we are passing in to our arguement to the function
+// this way of doing the function shortens the arguements from 4 to 1 making the code shorter
+
+let studentClass = "";
+const createStudentComponent = (student) => {
+    if (student.score >= 60) {
+        studentClass = "passing"
+    } else {
+        studentClass = "failing"
+    } 
+    return `
+        <div class="student">
+            <h1 class= "xx-large ${studentClass}">${student.name}</h1>
+            <section class="bordered dashed section--padded">${student.subject}</section>
+            <aside class="pushRight">${student.info}</aside>
+        </div>
+    `
+}
+
+let studentHTML = "";
+
+//students is the array we are loopig over
+
+for (let i = 0; i < students.length; i++) {
+    const singleStudentHTML = createStudentComponent(
+        students[i])
     studentHTML += singleStudentHTML;
     console.log(studentHTML);
 }
